@@ -124,6 +124,18 @@ const fi = (function () {
         },
 
         uniq: function (array, isSorted, callback, result = []) {
+          if (callback) {
+            let result = []
+            let values = []
+            for (let element of array) {
+                if (!values.includes(callback(element))) {
+                    values.push(callback(element));
+                    result.push(element);
+                }
+            }
+          }
+          return result
+          }
           if (isSorted){
             if (!callback){
               findUniqInSorted()
