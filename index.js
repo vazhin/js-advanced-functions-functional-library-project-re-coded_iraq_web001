@@ -138,7 +138,9 @@ const fi = (function () {
             findUniqInSorted(array)
             return result
           } else if (!isSorted) {
-
+            array.sort()
+            findUniqInSorted(array)
+            return result
           } else if (callback) {
                 let result = []
                 let values = []
