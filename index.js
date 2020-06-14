@@ -137,7 +137,7 @@ const fi = (function () {
           if (isSorted){
             findUniqInSorted(array)
             return result
-          } else if (!isSorted) {
+          } else if (!callback) {
             array.sort()
             findUniqInSorted(array)
             return result
