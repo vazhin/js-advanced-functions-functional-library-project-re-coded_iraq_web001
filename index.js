@@ -104,38 +104,38 @@ const fi = (function () {
         },
 
         flatten: function (array, shallow) {
-
-            if (shallow) {
-                let result = []
-                for (let element of array) {
-                    if (Array.isArray(element)) {
-                        for (let elementInside of element) {
-                            result.push(elementInside)
-                        }
-                    } else {
-                        result.push(element)
-                    }
+          let result = []
+          if (shallow) {
+            for (let element of array) {
+              if (Array.isArray(element)) {
+                for (let elementInside of element) {
+                  result.push(elementInside)
                 }
-                return result
-            } else {
-                let result = []
-
-                let current = array
-                let next = []
-
-                while (current || current === 0) {
-
-                    if (Array.isArray(current)) {
-                        for (let i = 0; i < current.length; i++) {
-                            next.push(current[i])
-                        }
-                    } else {
-                        result.push(current)
-                    }
-                    current = next.shift()
-                }
-                return result.sort()
+              } else {
+                result.push(element)
+              }
             }
+            return result
+          } else {
+
+            for(let element of array){
+              isItArray(element)
+            }
+            return result
+
+            function isItArray(element) {
+              if (!Array.isArray(element)){
+                result.push(element)
+                return
+              } else {
+                for (let elementInside of element){
+                  isItArray(elementInside)
+                }
+              }
+            }
+
+          }
+
         },
 
         uniq: function (array, isSorted, callback) {
