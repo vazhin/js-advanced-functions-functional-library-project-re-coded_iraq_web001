@@ -141,7 +141,10 @@ const fi = (function () {
             return result
           } else {
             array.sort()
-            this.uniq(array, true, callback)
+            if (!callback){
+              findUniqInSorted()
+            }
+            return result
           }
           function findUniqInSorted() {
             let duplicates = []
