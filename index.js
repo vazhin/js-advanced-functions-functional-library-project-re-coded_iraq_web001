@@ -103,42 +103,39 @@ const fi = (function () {
             return newArr.sort(compare)
         },
 
-        flatten: function (array, shallow) {
-          let result = []
-          if (shallow) {
-            for (let element of array) {
-              if (Array.isArray(element)) {
-                for (let elementInside of element) {
-                  result.push(elementInside)
-                }
-              } else {
-                result.push(element)
-              }
-            }
-            return result
-          } else {
-
-            for(let element of array){
-              isItArray(element)
-            }
-            return result
-
-            function isItArray(element) {
-              if (!Array.isArray(element)){
-                result.push(element)
-                return
-              } else {
-                for (let elementInside of element){
-                  isItArray(elementInside)
-                }
-              }
-            }
-
+        flatten: function (array, shallow, result = []) {
+          for (let element of array){
+            isItArray(element)
           }
+          return result
 
+          function isItArray(element) {
+            if (!Array.isArray(element)) {
+              result.push(element)
+              return
+            }
+            else {
+              for (let elementInside of element){
+                shallow ? result.push(elementInside) : isItArray(elementInside)
+              }
+              return
+            }
+          }
         },
 
-        uniq: function (array, isSorted, callback) {
+        uniq: function (array, isSorted, callback, result = []) {
+          if (isSorted){
+            let duplicates = []
+            for (let i = 0; i < array.length - 1; i++) {
+              if(array[i] === array[i + 1] && !duplicates.includes(array[i])){
+                duplicates.push(array[i])
+                 ['a', 'a', 'b', 'c', 'e', 'e', 'e', 'e']
+              } else {
+
+              }
+            }
+            return array
+          }
             if (!callback) {
                 for (let i = 0; i < array.length; i++) {
                     for (let j = i + 1; j < array.length; j++) {
