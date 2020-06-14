@@ -124,7 +124,7 @@ const fi = (function () {
         },
 
         uniq: function (array, isSorted, callback, result = []) {
-          function findUniqInSorted() {
+          function findUniqInSorted(array) {
             let duplicates = []
             for (let i = 0; i < array.length - 1; i++) {
               if(array[i] === array[i + 1] && !duplicates.includes(array[i])){
@@ -135,7 +135,7 @@ const fi = (function () {
             }
           }
           if (isSorted){
-            findUniqInSorted()
+            findUniqInSorted(array)
             return result
           } else if (!isSorted) {
 
