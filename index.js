@@ -129,12 +129,11 @@ const fi = (function () {
             for (let i = 0; i < array.length - 1; i++) {
               if(array[i] === array[i + 1] && !duplicates.includes(array[i])){
                 duplicates.push(array[i])
-                 ['a', 'a', 'b', 'c', 'e', 'e', 'e', 'e']
-              } else {
-
+              } else if (!duplicates.includes(array[i])) {
+                result.push(array[i])
               }
             }
-            return array
+            return result
           }
             if (!callback) {
                 for (let i = 0; i < array.length; i++) {
