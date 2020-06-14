@@ -143,6 +143,15 @@ const fi = (function () {
             array.sort()
             if (!callback){
               findUniqInSorted()
+            } else {
+              let result = []
+              let values = []
+              for (let element of array) {
+                  if (!values.includes(callback(element))) {
+                      values.push(callback(element));
+                      result.push(element);
+                  }
+              }
             }
             return result
           }
