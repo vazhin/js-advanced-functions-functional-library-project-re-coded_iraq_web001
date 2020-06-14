@@ -103,62 +103,41 @@ const fi = (function () {
             return newArr.sort(compare)
         },
 
-        flatten: function (array, shallow) {
+        flatten: function (array, shallow, result = []) {
+          for (let element of array){
+            isItArray(element)
+          }
+          return result
 
-            if (shallow) {
-                let result = []
-                for (let element of array) {
-                    if (Array.isArray(element)) {
-                        for (let elementInside of element) {
-                            result.push(elementInside)
-                        }
-                    } else {
-                        result.push(element)
-                    }
-                }
-                return result
-            } else {
-                let result = []
-
-                let current = array
-                let next = []
-
-                while (current || current === 0) {
-
-                    if (Array.isArray(current)) {
-                        for (let i = 0; i < current.length; i++) {
-                            next.push(current[i])
-                        }
-                    } else {
-                        result.push(current)
-                    }
-                    current = next.shift()
-                }
-                return result.sort()
+          function isItArray(element) {
+            if (!Array.isArray(element)) {
+              result.push(element)
+              return
             }
+            else {
+              for (let elementInside of element){
+                shallow ? result.push(elementInside) : isItArray(elementInside)
+              }
+              return
+            }
+          }
         },
 
-        uniq: function (array, isSorted, callback) {
-            if (!callback) {
-                for (let i = 0; i < array.length; i++) {
-                    for (let j = i + 1; j < array.length; j++) {
-                        if (array[i] === array[j]) {
-                            array.splice(j, 1);
-                        }
-                    }
+        uniq: function (array, isSorted, callback, result = []) {
+            let values = []
+            for (let element of array) {
+              if (callback) {
+                if (!values.includes(callback(element))) {
+                    values.push(callback(element));
+                    result.push(element);
                 }
-                return array
-            } else {
-                let result = []
-                let values = []
-                for (let element of array) {
-                    if (!values.includes(callback(element))) {
-                        values.push(callback(element));
-                        result.push(element);
-                    }
+              } else {
+                if (!result.includes(element)) {
+                    result.push(element);
                 }
-                return result
+              }
             }
+            return result
         },
 
         keys: function (object) {
