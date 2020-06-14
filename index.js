@@ -136,47 +136,48 @@ const fi = (function () {
           }
           return result
           }
-          if (isSorted){
-            if (!callback){
-              findUniqInSorted()
-            }
-            else {
-              let result = []
-              let values = []
-              for (let element of array) {
-                  if (!values.includes(callback(element))) {
-                      values.push(callback(element));
-                      result.push(element);
-                  }
-              }
-            }
-            return result
-          } else {
-            array.sort()
-            if (!callback){
-              findUniqInSorted()
-            } else {
-              let result = []
-              let values = []
-              for (let element of array) {
-                  if (!values.includes(callback(element))) {
-                      values.push(callback(element));
-                      result.push(element);
-                  }
-              }
-            }
-            return result
-          }
-          function findUniqInSorted() {
-            let duplicates = []
-            for (let i = 0; i < array.length - 1; i++) {
-              if(array[i] === array[i + 1] && !duplicates.includes(array[i])){
-                duplicates.push(array[i])
-              } else if (!duplicates.includes(array[i])) {
-                result.push(array[i])
-              }
-            }
-          }
+          // 
+          // if (isSorted){
+          //   if (!callback){
+          //     findUniqInSorted()
+          //   }
+          //   else {
+          //     let result = []
+          //     let values = []
+          //     for (let element of array) {
+          //         if (!values.includes(callback(element))) {
+          //             values.push(callback(element));
+          //             result.push(element);
+          //         }
+          //     }
+          //   }
+          //   return result
+          // } else {
+          //   array.sort()
+          //   if (!callback){
+          //     findUniqInSorted()
+          //   } else {
+          //     let result = []
+          //     let values = []
+          //     for (let element of array) {
+          //         if (!values.includes(callback(element))) {
+          //             values.push(callback(element));
+          //             result.push(element);
+          //         }
+          //     }
+          //   }
+          //   return result
+          // }
+          // function findUniqInSorted() {
+          //   let duplicates = []
+          //   for (let i = 0; i < array.length - 1; i++) {
+          //     if(array[i] === array[i + 1] && !duplicates.includes(array[i])){
+          //       duplicates.push(array[i])
+          //     } else if (!duplicates.includes(array[i])) {
+          //       result.push(array[i])
+          //     }
+          //   }
+          // }
         },
 
         keys: function (object) {
