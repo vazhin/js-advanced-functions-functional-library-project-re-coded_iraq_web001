@@ -133,9 +133,10 @@ const fi = (function () {
                     result.push(element);
                 }
             }
+            return result
           }
-          return result
-          }
+          
+          
           //
           // if (isSorted){
           //   if (!callback){
