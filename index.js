@@ -124,16 +124,6 @@ const fi = (function () {
         },
 
         uniq: function (array, isSorted, callback, result = []) {
-          function findUniqInSorted() {
-            let duplicates = []
-            for (let i = 0; i < array.length - 1; i++) {
-              if(array[i] === array[i + 1] && !duplicates.includes(array[i])){
-                duplicates.push(array[i])
-              } else if (!duplicates.includes(array[i])) {
-                result.push(array[i])
-              }
-            }
-          }
           if (isSorted){
             if (!callback){
               findUniqInSorted()
@@ -152,6 +142,16 @@ const fi = (function () {
           } else {
             array.sort()
             this.uniq(array, true, callback)
+          }
+          function findUniqInSorted() {
+            let duplicates = []
+            for (let i = 0; i < array.length - 1; i++) {
+              if(array[i] === array[i + 1] && !duplicates.includes(array[i])){
+                duplicates.push(array[i])
+              } else if (!duplicates.includes(array[i])) {
+                result.push(array[i])
+              }
+            }
           }
         },
 
