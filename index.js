@@ -124,6 +124,9 @@ const fi = (function () {
         },
 
         uniq: function (array, isSorted, callback, result = []) {
+          function findUniqInSorted() {
+            
+          }
           if (isSorted){
             let duplicates = []
             for (let i = 0; i < array.length - 1; i++) {
