@@ -135,23 +135,24 @@ const fi = (function () {
             }
           }
           if (isSorted){
-            findUniqInSorted(array)
-            return result
-          } else if (!callback) {
-            array.sort()
-            findUniqInSorted(array)
-            return result
-          } else if (callback) {
-                let result = []
-                let values = []
-                for (let element of array) {
-                    if (!values.includes(callback(element))) {
-                        values.push(callback(element));
-                        result.push(element);
-                    }
-                }
-                return result
+            if (!callback){
+              findUniqInSorted(array)
             }
+            else {
+              let result = []
+              let values = []
+              for (let element of array) {
+                  if (!values.includes(callback(element))) {
+                      values.push(callback(element));
+                      result.push(element);
+                  }
+              }
+            }
+            return result
+          } else {
+            array.sort()
+            this.uniq(array, true, callback)
+          }
         },
 
         keys: function (object) {
